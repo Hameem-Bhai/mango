@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mr. Mango BD — Project Feature Overview & Client Proposal</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #FDA701;
+      --primary-dark: #e59600;
+      --secondary: #076136;
+      --secondary-light: #0a8449;
+      --dark: #121212;
+      --dark-card: #1A1A1A;
+      --gray-border: #e5e7eb;
+      --gray-bg: #f9fafb;
+      --text-main: #1f2937;
+      --text-muted: #4b5563;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      color: var(--text-main);
+      background-color: #f3f4f6;
+      line-height: 1.6;
+      padding: 24px;
+    }
+
+    .proposal-container {
+      max-width: 1050px;
+      margin: 0 auto;
+      background: #ffffff;
+      border-radius: 24px;
+      box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.08);
+      overflow: hidden;
+      border: 1px solid var(--gray-border);
+    }
+
+    /* Print styling */
+    @media print {
+      body {
+        background: #fff;
+        padding: 0;
+      }
+      .proposal-container {
+        box-shadow: none;
+        border: none;
+        max-width: 100%;
+      }
+      .no-print {
+        display: none !important;
+      }
+      .page-break {
+        page-break-before: always;
+      }
+    }
+
+    /* Action bar */
+    .action-bar {
+      background: var(--dark);
+      color: #fff;
+      padding: 14px 28px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .action-btn {
+      background: var(--primary);
+      color: #000;
+      border: none;
+      padding: 10px 22px;
+      border-radius: 10px;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 14px;
+      transition: all 0.2s ease;
+    }
+    .action-btn:hover {
+      background: var(--primary-dark);
+      transform: translateY(-1px);
+    }
+
+    /* Header Section */
+    .header-banner {
+      background: linear-gradient(135deg, #1A1A1A 0%, #0d0d0d 100%);
+      color: #fff;
+      padding: 50px 48px;
+      position: relative;
+      border-bottom: 5px solid var(--primary);
+    }
+    .header-tag {
+      display: inline-block;
+      background: rgba(253, 167, 1, 0.15);
+      color: var(--primary);
+      border: 1px solid rgba(253, 167, 1, 0.3);
+      padding: 6px 14px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 16px;
+    }
+    .header-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 38px;
+      line-height: 1.2;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+    .header-title span {
+      color: var(--primary);
+    }
+    .header-subtitle {
+      color: #cbd5e1;
+      font-size: 16px;
+      max-width: 680px;
+    }
+
+    .meta-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 16px;
+      margin-top: 32px;
+      padding-top: 24px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    .meta-item p:first-child {
+      font-size: 11px;
+      text-transform: uppercase;
+      color: #94a3b8;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+    }
+    .meta-item p:last-child {
+      font-size: 15px;
+      color: #fff;
+      font-weight: 600;
+      margin-top: 3px;
+    }
+
+    /* Content Layout */
+    .content-body {
+      padding: 48px;
+    }
+
+    .section-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--dark);
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .section-desc {
+      color: var(--text-muted);
+      font-size: 14px;
+      margin-bottom: 28px;
+    }
+
+    /* Highlight Summary Badges */
+    .stats-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+      margin-bottom: 40px;
+    }
+    .stat-card {
+      background: var(--gray-bg);
+      border: 1px solid var(--gray-border);
+      border-radius: 16px;
+      padding: 20px;
+      border-left: 4px solid var(--primary);
+    }
+    .stat-num {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 26px;
+      font-weight: 700;
+      color: var(--dark);
+    }
+    .stat-label {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-top: 4px;
+      font-weight: 500;
+    }
+
+    /* Features Grid */
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+      margin-bottom: 48px;
+    }
+    .feature-box {
+      background: #fff;
+      border: 1px solid var(--gray-border);
+      border-radius: 16px;
+      padding: 24px;
+      transition: all 0.2s ease;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.02);
+    }
+    .feature-icon {
+      font-size: 26px;
+      margin-bottom: 12px;
+      display: inline-block;
+    }
+    .feature-title {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--dark);
+      margin-bottom: 8px;
+    }
+    .feature-list {
+      list-style: none;
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+    .feature-list li {
+      margin-bottom: 6px;
+      position: relative;
+      padding-left: 18px;
+    }
+    .feature-list li::before {
+      content: "✓";
+      position: absolute;
+      left: 0;
+      color: var(--secondary);
+      font-weight: 700;
+    }
+
+    /* Pricing Section */
+    .pricing-wrapper {
+      background: #f8fafc;
+      border: 2px solid #e2e8f0;
+      border-radius: 20px;
+      padding: 36px;
+      margin-top: 36px;
+    }
+    .pricing-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+      margin-top: 24px;
+    }
+    .pricing-card {
+      background: #ffffff;
+      border: 1px solid var(--gray-border);
+      border-radius: 16px;
+      padding: 28px;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .pricing-card.featured {
+      border: 2px solid var(--primary);
+      box-shadow: 0 10px 25px -5px rgba(253, 167, 1, 0.25);
+    }
+    .badge-featured {
+      position: absolute;
+      top: -12px;
+      right: 20px;
+      background: var(--primary);
+      color: #000;
+      font-size: 11px;
+      font-weight: 800;
+      padding: 3px 10px;
+      border-radius: 999px;
+      text-transform: uppercase;
+    }
+    .plan-name {
+      font-size: 18px;
+      font-weight: 800;
+      color: var(--dark);
+    }
+    .plan-desc {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-top: 4px;
+      min-height: 38px;
+    }
+    .plan-price {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 32px;
+      font-weight: 800;
+      color: var(--dark);
+      margin: 18px 0;
+    }
+    .plan-price span {
+      font-size: 14px;
+      font-weight: 500;
+      color: #64748b;
+    }
+    .plan-features {
+      list-style: none;
+      font-size: 13px;
+      color: #334155;
+      margin-bottom: 20px;
+    }
+    .plan-features li {
+      padding: 6px 0;
+      border-bottom: 1px solid #f1f5f9;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    /* Client Tips */
+    .tip-box {
+      background: #ecfdf5;
+      border: 1px solid #a7f3d0;
+      color: #065f46;
+      border-radius: 12px;
+      padding: 16px 20px;
+      font-size: 13px;
+      margin-top: 24px;
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+    }
+
+    /* Footer */
+    .proposal-footer {
+      background: var(--dark);
+      color: #94a3b8;
+      padding: 30px 48px;
+      font-size: 12px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    .proposal-footer strong {
+      color: #fff;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Action Bar for PDF Generation -->
+  <div class="proposal-container no-print" style="margin-bottom: 16px;">
+    <div class="action-bar">
+      <div>
+        <strong>📄 Mr. Mango BD Platform Presentation</strong> &nbsp;|&nbsp; Ready to show your client or save as PDF
+      </div>
+      <button class="action-btn" onclick="window.print()">
+        🖨️ Print / Save as PDF (Ctrl + P)
+      </button>
+    </div>
+  </div>
+
+  <div class="proposal-container">
+    
+    <!-- Cover Banner -->
+    <header class="header-banner">
+      <div class="header-tag">Official System Showcase &amp; Proposal</div>
+      <h1 class="header-title">Mr. Mango BD — <span>E-Commerce Platform</span></h1>
+      <p class="header-subtitle">
+        A custom-engineered, ultra-fast web application tailored specifically for Bangladesh's vape market, featuring real-time product catalogs, Kuril outlet pickup, local mobile payments, WhatsApp sales automation, and secret administrative backoffice.
+      </p>
+
+      <div class="meta-grid">
+        <div class="meta-item">
+          <p>Prepared For</p>
+          <p>Mr. Mango Management</p>
+        </div>
+        <div class="meta-item">
+          <p>Lead Engineer &amp; Studio</p>
+          <p>Hameem Bhai (hameembhaierdokan.studio)</p>
+        </div>
+        <div class="meta-item">
+          <p>Location / Outlet</p>
+          <p>Kuril (Tong Market, Beside AIUB)</p>
+        </div>
+        <div class="meta-item">
+          <p>Technology</p>
+          <p>React 18 + Node.js + Express</p>
+        </div>
+      </div>
+    </header>
+
+    <div class="content-body">
+      
+      <!-- Key Highlights Stats -->
+      <div class="stats-row">
+        <div class="stat-card">
+          <div class="stat-num">24+</div>
+          <div class="stat-label">Real BD Vape Products &amp; Flavors</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">100%</div>
+          <div class="stat-label">Mobile &amp; Responsive Architecture</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">&lt; 1s</div>
+          <div class="stat-label">Lightning Fast Sub-Second Load</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">0% Fake</div>
+          <div class="stat-label">Full Scratch Code Verification Ready</div>
+        </div>
+      </div>
+
+      <!-- SECTION 1: DETAILED FEATURE BREAKDOWN -->
+      <h2 class="section-title">✨ Complete Feature Specification</h2>
+      <p class="section-desc">Every capability engineered and implemented specifically for Mr. Mango BD:</p>
+
+      <div class="features-grid">
+
+        <!-- Card 1 -->
+        <div class="feature-box">
+          <div class="feature-icon">🛍️</div>
+          <h3 class="feature-title">Storefront &amp; Shopping Experience</h3>
+          <ul class="feature-list">
+            <li><strong>Header &amp; Shop Dropdown:</strong> Full access to all product categories (Disposables, E-Liquids, Pod Kits, Coils &amp; Cartridges, All Products).</li>
+            <li><strong>Live Instant Search:</strong> Debounced instant search bar across names, brands, and flavors.</li>
+            <li><strong>Category Filtering &amp; Sorting:</strong> Filter by category, sort by price (low to high, high to low), rating, and featured.</li>
+            <li><strong>Urgency Stock Badges:</strong> "Only a few left!" and "Sold Out" tags to boost conversions.</li>
+            <li><strong>New Arrival Badges:</strong> Green highlighted flags on latest additions.</li>
+          </ul>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="feature-box">
+          <div class="feature-icon">💬</div>
+          <h3 class="feature-title">WhatsApp Instant Sales Automation</h3>
+          <ul class="feature-list">
+            <li><strong>Floating WhatsApp Support:</strong> Quick-action button linking directly to the Kuril outlet hotline (+880 1700-000000).</li>
+            <li><strong>Click-to-Order via WhatsApp:</strong> Customers can order any product directly on WhatsApp with pre-filled product name and price.</li>
+            <li><strong>Instant Order Dispatch:</strong> After placing an order, one-tap notification sends complete order details to staff via WhatsApp.</li>
+            <li><strong>Out-of-Stock Waitlist:</strong> Customers can submit their WhatsApp number to get notified when restocked.</li>
+          </ul>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="feature-box">
+          <div class="feature-icon">💳</div>
+          <h3 class="feature-title">Bangladeshi Payment System</h3>
+          <ul class="feature-list">
+            <li><strong>bKash Direct Payment:</strong> Dedicated pink bKash card with personal Send Money instructions and order number reference.</li>
+            <li><strong>Nagad Direct Payment:</strong> Orange Nagad card with full transaction reference workflow.</li>
+            <li><strong>Cash on Delivery (COD):</strong> Same-day delivery inside Dhaka and courier nationwide.</li>
+            <li><strong>SSLCommerz API Scaffold:</strong> Backend architecture ready for automated debit/credit card &amp; MFS processing.</li>
+            <li><strong>Promo / Discount Coupons:</strong> Real-time coupon code validation (e.g., <code>MANGO10</code> for 10% off).</li>
+          </ul>
+        </div>
+
+        <!-- Card 4 -->
+        <div class="feature-box">
+          <div class="feature-icon">📦</div>
+          <h3 class="feature-title">Live Order Tracking &amp; Delivery</h3>
+          <ul class="feature-list">
+            <li><strong>Live Tracking Engine:</strong> Interactive timeline tracking 4 phases (Order Placed → Processing → Shipped → Delivered).</li>
+            <li><strong>Auto-Prefilled Confirmation:</strong> Clicking "Track My Order" automatically fills the tracking form with the order number.</li>
+            <li><strong>Delivery Badging:</strong> Dhaka same-day delivery badges &amp; 64-district nationwide courier integration info.</li>
+            <li><strong>Store Pickup Option:</strong> Option for free in-store pickup at Kuril flagship outlet.</li>
+          </ul>
+        </div>
+
+        <!-- Card 5 -->
+        <div class="feature-box">
+          <div class="feature-icon">🔒</div>
+          <h3 class="feature-title">Secret Staff &amp; Admin Dashboard</h3>
+          <ul class="feature-list">
+            <li><strong>Invisible to Normal Users:</strong> Zero public admin links or staff URLs exposed in navigation or footers.</li>
+            <li><strong>Secure Dual Authentication:</strong> Instant admin redirection when registering or signing in with <code>mango@gmail.com</code> / <code>mangokhabo</code>.</li>
+            <li><strong>Product Management:</strong> Real-time product creation, price editing, stock toggle, and featured badge switches.</li>
+            <li><strong>Order Lifecycle Manager:</strong> Update order status (Pending → Processing → Shipped → Delivered) in one click.</li>
+            <li><strong>Waitlist &amp; Contact Leads:</strong> Live inbox of customer waitlist inquiries and wholesale leads.</li>
+          </ul>
+        </div>
+
+        <!-- Card 6 -->
+        <div class="feature-box">
+          <div class="feature-icon">📍</div>
+          <h3 class="feature-title">Physical Outlet Integration</h3>
+          <ul class="feature-list">
+            <li><strong>Accurate Flagship Store:</strong> 2nd floor, Tong Market, Kuril, Beside Main gate of AIUB, Dhaka.</li>
+            <li><strong>Outlet Showcase Card:</strong> Features, opening hours (11:00 AM – 11:00 PM), in-store device testing info.</li>
+            <li><strong>Interactive Directions:</strong> One-click navigation and direct store helpline connection.</li>
+            <li><strong>Multi-Channel Presence:</strong> Outlet details embedded in Hero, Navbar drawer, Footer, Contact, and About pages.</li>
+          </ul>
+        </div>
+
+        <!-- Card 7 -->
+        <div class="feature-box">
+          <div class="feature-icon">🌓</div>
+          <h3 class="feature-title">Dark Mode &amp; Premium UX</h3>
+          <ul class="feature-list">
+            <li><strong>Dark / Light Mode Toggle:</strong> Instant switch with local storage persistence and system preference detection.</li>
+            <li><strong>Mobile Bottom Navigation:</strong> Native app-style fixed bottom navigation bar on smartphones (Home, Shop, Cart, Contact).</li>
+            <li><strong>Product Comparison Tool:</strong> Compare up to 3 products side-by-side (puffs, nicotine, price, specs).</li>
+            <li><strong>Recently Viewed Carousel:</strong> Auto-saves customer's recently explored items for higher return purchases.</li>
+          </ul>
+        </div>
+
+        <!-- Card 8 -->
+        <div class="feature-box">
+          <div class="feature-icon">🛡️</div>
+          <h3 class="feature-title">Compliance, SEO &amp; Performance</h3>
+          <ul class="feature-list">
+            <li><strong>Age Verification Gate (18+ / 21+):</strong> Legal compliance overlay on first visit with session memory.</li>
+            <li><strong>Mandatory Nicotine Warnings:</strong> Professional legal compliance banners on header and footer.</li>
+            <li><strong>Google SEO Rich Snippets:</strong> Schema.org JSON-LD Product structured data for organic Google ranking.</li>
+            <li><strong>Sub-Second Speed:</strong> Built on Vite + React 18, generating tiny compressed bundles without heavy WordPress lag.</li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="page-break"></div>
+
+      <!-- SECTION 2: PRICING GUIDE & PROPOSAL -->
+      <div class="pricing-wrapper">
+        <h2 class="section-title">💰 Recommended Pricing Guide for Your Client</h2>
+        <p class="section-desc">
+          Because this is a <strong>custom-engineered web platform</strong> (not a generic WordPress or Shopify template with monthly app fees), you are offering custom proprietary software with zero recurring platform commission. Here is the recommended pricing strategy to present to Mr. Mango:
+        </p>
+
+        <div class="pricing-cards">
+          
+          <!-- Tier 1 -->
+          <div class="pricing-card">
+            <div>
+              <div class="plan-name">Standard E-Commerce</div>
+              <div class="plan-desc">Essential online vape catalog and customer ordering.</div>
+              <div class="plan-price">৳ 35,000 <span>/ one-time</span></div>
+              <ul class="plan-features">
+                <li>✓ Full Custom React Frontend</li>
+                <li>✓ Product Catalog (20+ Products)</li>
+                <li>✓ WhatsApp Quick Ordering</li>
+                <li>✓ bKash &amp; Nagad Payment Instructions</li>
+                <li>✓ Mobile Responsive Design</li>
+                <li>✓ 1 Physical Outlet Showcase</li>
+              </ul>
+            </div>
+            <div style="font-size: 12px; color: #64748b; margin-top: 10px;">
+              Good for small baseline retail setups.
+            </div>
+          </div>
+
+          <!-- Tier 2 - RECOMMENDED -->
+          <div class="pricing-card featured">
+            <span class="badge-featured">Recommended</span>
+            <div>
+              <div class="plan-name">Full-Stack Business Suite</div>
+              <div class="plan-desc">The complete platform currently built &amp; functioning today.</div>
+              <div class="plan-price" style="color: var(--primary-dark);">৳ 55,000 – ৳ 65,000 <span>/ one-time</span></div>
+              <ul class="plan-features">
+                <li>✓ <strong>Everything in Standard</strong></li>
+                <li>✓ <strong>Secret Staff Admin Dashboard</strong></li>
+                <li>✓ <strong>Live Order Tracking Engine</strong></li>
+                <li>✓ <strong>Product Comparison Tool &amp; Recently Viewed</strong></li>
+                <li>✓ <strong>Dark / Light Mode Toggle</strong></li>
+                <li>✓ <strong>Waitlist Lead Capture &amp; Inquiries</strong></li>
+                <li>✓ <strong>Promo Coupons &amp; Discount Codes</strong></li>
+                <li>✓ <strong>Vape Guides &amp; SEO Rich Snippets</strong></li>
+                <li>✓ <strong>1 Month Free Bug Fixes &amp; Support</strong></li>
+              </ul>
+            </div>
+            <div style="font-size: 12px; color: #076136; font-weight: 700; margin-top: 10px;">
+              ⭐ Best value &amp; direct match to the current build.
+            </div>
+          </div>
+
+          <!-- Tier 3 -->
+          <div class="pricing-card">
+            <div>
+              <div class="plan-name">Enterprise &amp; Retainer</div>
+              <div class="plan-desc">Complete platform + custom domain + 6 months maintenance.</div>
+              <div class="plan-price">৳ 80,000 – ৳ 95,000 <span>/ package</span></div>
+              <ul class="plan-features">
+                <li>✓ <strong>Everything in Business Suite</strong></li>
+                <li>✓ Automated SSLCommerz Payment Gateway</li>
+                <li>✓ Domain &amp; Cloud VPS Deployment Setup</li>
+                <li>✓ Automated Daily Database Backups</li>
+                <li>✓ Product Catalog Updates (Monthly)</li>
+                <li>✓ 6 Months Dedicated Technical Support</li>
+              </ul>
+            </div>
+            <div style="font-size: 12px; color: #64748b; margin-top: 10px;">
+              Ideal if the client wants you to manage everything long-term.
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Negotiation & Pitching Tips -->
+        <div class="tip-box">
+          <div style="font-size: 20px;">💡</div>
+          <div>
+            <strong>How to pitch this price to Mr. Mango today:</strong>
+            <ul style="margin-top: 6px; padding-left: 18px; line-height: 1.5;">
+              <li><strong>No monthly Shopify fees:</strong> Shopify or custom SaaS charges $39–$105 USD every single month plus 2% transaction fees. Your custom platform has <strong>ZERO monthly commission</strong>.</li>
+              <li><strong>Built for Bangladesh:</strong> Includes Kuril outlet pickup beside AIUB, bKash/Nagad workflows, and instant WhatsApp dispatch that foreign platforms can't do out of the box.</li>
+              <li><strong>Anchor high:</strong> Quote <strong>৳ 60,000</strong> for the full platform. If they negotiate, you can settle comfortably at <strong>৳ 50,000</strong> plus an optional <strong>৳ 3,000 – ৳ 5,000/month</strong> maintenance fee for uploading new products and server hosting.</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- Footer Note -->
+    <footer class="proposal-footer">
+      <div>
+        Designed &amp; Engineered by <strong>Hameem Bhai</strong> — <a href="https://hameembhaierdokan.studio" target="_blank" style="color: var(--primary); text-decoration: none;">hameembhaierdokan.studio</a>
+      </div>
+      <div>
+        Platform Version 1.0 • Ready for Production Deployment
+      </div>
+    </footer>
+
+  </div>
+
+</body>
+</html>
