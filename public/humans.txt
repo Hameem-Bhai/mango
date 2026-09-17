@@ -1,0 +1,13 @@
+/* TEAM */
+Developer & Designer: Hameem Bhai
+Studio: hameembhaierdokan.studio
+Website: https://hameembhaierdokan.studio
+Location: Dhaka, Bangladesh
+
+/* SITE */
+Standards: HTML5, CSS3, ESNext
+Components: React 18, TypeScript, Tailwind CSS, Lucide Icons, Radix UI
+Backend: Node.js, Express, SQLite
+Build Tool: Vite
+Platform: Mr. Mango BD
+Year: 2026

@@ -1,0 +1,159 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 44 66% 97%; /* Cream */
+    --foreground: 0 0% 10%; /* Dark */
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 10%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 10%;
+    --primary: 40 99% 50%; /* Mango Gold */
+    --primary-foreground: 0 0% 10%;
+    --secondary: 151 87% 20%; /* Forest Green */
+    --secondary-foreground: 0 0% 100%;
+    --muted: 44 20% 90%;
+    --muted-foreground: 0 0% 40%;
+    --accent: 40 99% 50%;
+    --accent-foreground: 0 0% 10%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 85%;
+    --input: 0 0% 85%;
+    --ring: 40 99% 50%;
+    --radius: 0.5rem;
+    --primary-hover: #e59600; /* Accent hover gold */
+    --secondary-hover: #054d2b; /* Deep green */
+    --cream: #FAF5E7;
+    --dark: #1A1A1A;
+  }
+
+  .dark {
+    --background: 0 0% 8%; /* Dark */
+    --foreground: 44 40% 95%; /* Light text */
+    --card: 0 0% 12%;
+    --card-foreground: 44 40% 95%;
+    --popover: 0 0% 12%;
+    --popover-foreground: 44 40% 95%;
+    --primary: 40 99% 50%; /* Mango Gold */
+    --primary-foreground: 0 0% 10%;
+    --secondary: 151 87% 20%; /* Forest Green */
+    --secondary-foreground: 0 0% 100%;
+    --muted: 0 0% 20%;
+    --muted-foreground: 0 0% 65%;
+    --accent: 40 99% 50%;
+    --accent-foreground: 0 0% 10%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 20%;
+    --input: 0 0% 20%;
+    --ring: 40 99% 50%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-heading;
+  }
+  
+  /* Scrollbar styles */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  ::-webkit-scrollbar-track {
+    background: hsl(var(--background));
+  }
+  ::-webkit-scrollbar-thumb {
+    background: hsl(var(--muted-foreground) / 0.3);
+    border-radius: var(--radius);
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: hsl(var(--muted-foreground) / 0.5);
+  }
+}
+
+/* Global Dark Mode Overrides */
+html.dark {
+  color-scheme: dark;
+}
+
+html.dark body {
+  background-color: #121212;
+  color: #f3f4f6;
+}
+
+html.dark .bg-\[\#FAF5E7\] {
+  background-color: #121212 !important;
+}
+
+html.dark .bg-white {
+  background-color: #1c1c1c !important;
+}
+
+html.dark .bg-gray-50 {
+  background-color: #161616 !important;
+}
+
+html.dark .bg-gray-100 {
+  background-color: #242424 !important;
+}
+
+/* Ensure text on gold hero/buttons stays dark for readability */
+html.dark .bg-\[\#FDA701\] .text-\[\#1A1A1A\],
+html.dark .bg-\[\#FDA701\] p,
+html.dark .bg-\[\#FDA701\] h1,
+html.dark .bg-\[\#FDA701\] button,
+html.dark button.bg-\[\#FDA701\],
+html.dark button.bg-\[\#FDA701\] * {
+  color: #1A1A1A !important;
+}
+
+/* General text color overrides in dark mode */
+html.dark .text-\[\#1A1A1A\]:not(.bg-\[\#FDA701\] *):not(button.bg-\[\#FDA701\] *) {
+  color: #f3f4f6 !important;
+}
+
+html.dark .text-gray-900 {
+  color: #f3f4f6 !important;
+}
+
+html.dark .text-gray-800 {
+  color: #e5e7eb !important;
+}
+
+html.dark .text-gray-700 {
+  color: #d1d5db !important;
+}
+
+html.dark .text-gray-600 {
+  color: #9ca3af !important;
+}
+
+html.dark .border-gray-100,
+html.dark .border-gray-200,
+html.dark .border-gray-300 {
+  border-color: #2c2c2c !important;
+}
+
+html.dark input,
+html.dark textarea,
+html.dark select {
+  background-color: #1f1f1f !important;
+  color: #f3f4f6 !important;
+  border-color: #333333 !important;
+}
+
+html.dark .divide-gray-100 > :not([hidden]) ~ :not([hidden]),
+html.dark .divide-gray-200 > :not([hidden]) ~ :not([hidden]) {
+  border-color: #2c2c2c !important;
+}
+
