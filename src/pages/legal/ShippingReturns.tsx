@@ -30,7 +30,7 @@ export function ShippingReturns() {
           <p className="mb-4">If you receive a defective product, please contact our support team within 48 hours of delivery. We may require photos or videos of the defect for verification. Defective items will be replaced or refunded.</p>
           
           <h3 className="text-xl font-bold text-[#1A1A1A] mt-6 mb-2">Return Process</h3>
-          <p className="mb-4">To initiate a return, please contact support@mrmango.com with your order number and reason for return. Once approved, you will receive instructions and a return shipping label.</p>
+          <p className="mb-4">To initiate a return, please contact mrmangovape@gmail.com or WhatsApp +880 1880-031355 with your order number and reason for return. Once approved, you will receive instructions and a return shipping label.</p>
         </div>
       </div>
     </>

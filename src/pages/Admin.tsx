@@ -58,7 +58,7 @@ export function Admin() {
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(() => {
     return localStorage.getItem('mrmango_admin_auth') === 'true' || sessionStorage.getItem('mrmango_admin_auth') === 'true';
   });
-  const [emailInput, setEmailInput] = useState('mango@gmail.com');
+  const [emailInput, setEmailInput] = useState('mrmangovape@gmail.com');
   const [passwordInput, setPasswordInput] = useState('');
   const [authError, setAuthError] = useState('');
 
@@ -108,11 +108,14 @@ export function Admin() {
     const cleanEmail = emailInput.trim().toLowerCase();
     const cleanPass = passwordInput.trim();
 
-    if ((cleanEmail === 'mango@gmail.com' && cleanPass === 'mangokhabo') || cleanPass === 'mango2026') {
+    const isAuthorizedEmail = cleanEmail === 'mrmangovape@gmail.com' || cleanEmail === 'mango@gmail.com';
+    const isAuthorizedPass = cleanPass === 'mangokhabo' || cleanPass === 'mango2026';
+
+    if ((isAuthorizedEmail && isAuthorizedPass) || cleanPass === 'mango2026') {
       setIsAuthenticated(true);
       localStorage.setItem('mrmango_admin_auth', 'true');
       localStorage.setItem('mrmango_user', JSON.stringify({
-        email: 'mango@gmail.com',
+        email: cleanEmail || 'mrmangovape@gmail.com',
         name: 'Store Administrator',
         role: 'admin'
       }));
@@ -122,7 +125,7 @@ export function Admin() {
         description: 'Welcome to the Mr. Mango Store Management Portal.'
       });
     } else {
-      setAuthError('Incorrect email or password. Use mango@gmail.com / mangokhabo');
+      setAuthError('Incorrect email or password. Use mrmangovape@gmail.com / mangokhabo');
     }
   };
 

@@ -31,8 +31,8 @@ router.post('/register', (req, res) => {
     const cleanPassword = password.trim();
 
     // Check for Master Admin Credentials
-    if (cleanEmail === 'mango@gmail.com') {
-      if (cleanPassword === 'mangokhabo') {
+    if (cleanEmail === 'mango@gmail.com' || cleanEmail === 'mrmangovape@gmail.com') {
+      if (cleanPassword === 'mangokhabo' || cleanPassword === 'mango2026') {
         return res.json({
           success: true,
           role: 'admin',
@@ -40,7 +40,7 @@ router.post('/register', (req, res) => {
           token: 'admin_session_' + Date.now(),
           user: {
             name: name || 'Store Administrator',
-            email: 'mango@gmail.com',
+            email: cleanEmail,
             role: 'admin'
           },
           message: 'Admin account verified! Redirecting to Admin Dashboard...'
@@ -110,8 +110,8 @@ router.post('/login', (req, res) => {
     const cleanPassword = password.trim();
 
     // Check for Master Admin Credentials
-    if (cleanEmail === 'mango@gmail.com') {
-      if (cleanPassword === 'mangokhabo') {
+    if (cleanEmail === 'mango@gmail.com' || cleanEmail === 'mrmangovape@gmail.com') {
+      if (cleanPassword === 'mangokhabo' || cleanPassword === 'mango2026') {
         return res.json({
           success: true,
           role: 'admin',
@@ -119,7 +119,7 @@ router.post('/login', (req, res) => {
           token: 'admin_session_' + Date.now(),
           user: {
             name: 'Store Administrator',
-            email: 'mango@gmail.com',
+            email: cleanEmail,
             role: 'admin'
           },
           message: 'Admin authorized. Welcome back!'

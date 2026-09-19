@@ -64,14 +64,22 @@ export function Footer() {
                 <p className="text-gray-400 text-xs mt-1.5 flex items-center gap-1">
                   <span className="inline-block w-1.5 h-1.5 rounded-full bg-green-500"></span> 11:00 AM – 11:00 PM (Daily)
                 </p>
-                <a 
-                  href="https://wa.me/8801880031355?text=Hi! I want to visit Mr. Mango Kuril Outlet." 
-                  target="_blank" 
-                  rel="noreferrer"
-                  className="mt-2.5 inline-flex items-center gap-1 text-[11px] font-bold text-[#25D366] hover:underline"
-                >
-                  WhatsApp: +880 1880-031355
-                </a>
+                <div className="mt-2.5 flex flex-col gap-1 text-[11px]">
+                  <a 
+                    href="https://wa.me/8801880031355?text=Hi! I want to visit Mr. Mango Kuril Outlet." 
+                    target="_blank" 
+                    rel="noreferrer"
+                    className="inline-flex items-center gap-1 font-bold text-[#25D366] hover:underline"
+                  >
+                    WhatsApp: +880 1880-031355
+                  </a>
+                  <a 
+                    href="mailto:mrmangovape@gmail.com" 
+                    className="text-gray-400 hover:text-[#FDA701] transition-colors"
+                  >
+                    Email: mrmangovape@gmail.com
+                  </a>
+                </div>
               </div>
             </div>
           </div>

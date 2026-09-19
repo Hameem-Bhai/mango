@@ -15,8 +15,8 @@ export const siteConfig = {
     phoneRaw: '+8801880031355',
     whatsapp: '8801880031355',
     whatsappFormatted: '+880 1880-031355',
-    email: 'support@mrmango.com',
-    emailBackup: 'mrmangobd@gmail.com',
+    email: 'mrmangovape@gmail.com',
+    emailSupport: 'mrmangovape@gmail.com',
   },
 
   // Physical Flagship Outlet in Dhaka

@@ -258,7 +258,7 @@ export function Contact() {
                   <Mail className="h-5 w-5 text-[#076136] shrink-0 mt-0.5" />
                   <div>
                     <h4 className="font-bold text-[#1A1A1A]">Official Email</h4>
-                    <p className="text-gray-600">support@mrmango.com</p>
+                    <a href="mailto:mrmangovape@gmail.com" className="text-gray-600 hover:text-[#076136] transition-colors">mrmangovape@gmail.com</a>
                   </div>
                 </div>
                 <div className="flex gap-3">
