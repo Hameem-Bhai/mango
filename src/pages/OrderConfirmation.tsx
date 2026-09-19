@@ -138,16 +138,20 @@ export function OrderConfirmation() {
       <SEO title="Order Confirmed — Mr.Mango.com" />
       <div className="container mx-auto px-4 py-16 max-w-4xl">
         <div className="text-center mb-10">
+          <Link href="/" className="inline-block mb-3">
+            <img src="/brand/logo-primary.png" alt="Mr. Mango" className="h-14 w-auto object-contain mx-auto dark:hidden" />
+            <img src="/brand/logo-dark.png" alt="Mr. Mango" className="h-14 w-auto object-contain mx-auto hidden dark:block" />
+          </Link>
           <motion.div 
             initial={{ scale: 0, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             transition={{ type: 'spring', damping: 15, stiffness: 200 }}
-            className="inline-block"
+            className="block"
           >
-            <CheckCircle2 className="h-24 w-24 text-green-500 mx-auto mb-6" />
+            <CheckCircle2 className="h-16 w-16 text-green-500 mx-auto mb-4" />
           </motion.div>
-          <h1 className="text-4xl font-bold text-[#1A1A1A] dark:text-white mb-4">Order Received!</h1>
-          <p className="text-gray-600 dark:text-gray-300 mb-2">Thank you for your purchase from Mr. Mango BD.</p>
+          <h1 className="text-3xl sm:text-4xl font-bold text-[#1A1A1A] dark:text-white mb-2">Order Received!</h1>
+          <p className="text-gray-600 dark:text-gray-300 mb-2 text-sm">Thank you for your purchase from Mr. Mango BD.</p>
           <div className="flex items-center justify-center gap-2 mt-3">
             <span className="text-sm text-gray-500">Order Number:</span>
             <span className="font-mono font-bold text-lg bg-[#FDA701] text-[#1A1A1A] px-3.5 py-1 rounded-lg">

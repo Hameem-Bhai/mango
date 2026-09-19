@@ -20,10 +20,10 @@ interface SEOProps {
 }
 
 export function SEO({
-  title = 'Mr.Mango.com — Your Vape Shop',
-  description = 'Disposables, pod kits, e-liquids, and accessories from the brands you trust.',
+  title = 'Mr. Mango BD — 100% Authentic Vape Shop',
+  description = 'Bangladesh\'s trusted vape store. Disposables, pod kits, and premium e-liquids with official outlet beside AIUB Kuril, Dhaka.',
   canonical,
-  ogImage = '/brand/og-image.jpg',
+  ogImage = '/brand/icon-square.png',
   ogType = 'website',
   product,
 }: SEOProps) {
@@ -48,11 +48,18 @@ export function SEO({
       <title>{title}</title>
       <meta name="description" content={description} />
       {canonical && <link rel="canonical" href={canonical} />}
+      <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+      <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+      <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png" />
+      <link rel="shortcut icon" href="/favicon.ico" />
+      <link rel="apple-touch-icon" href="/brand/icon-square.png" />
+      <meta property="og:site_name" content="Mr. Mango BD" />
       <meta property="og:title" content={title} />
       <meta property="og:description" content={description} />
       <meta property="og:image" content={ogImage} />
       <meta property="og:type" content={ogType} />
       <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:image" content={ogImage} />
       {schema && (
         <script type="application/ld+json">
           {JSON.stringify(schema)}

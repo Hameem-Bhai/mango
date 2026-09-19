@@ -471,11 +471,12 @@ export function Admin() {
         <SEO title="Admin Login — Mr.Mango.com" />
         <div className="min-h-[80vh] flex items-center justify-center px-4 bg-gray-50 dark:bg-[#121212]">
           <div className="w-full max-w-md bg-white dark:bg-[#1a1a1a] p-8 rounded-3xl shadow-xl border border-gray-100 dark:border-gray-800 text-center">
-            <div className="w-16 h-16 bg-[#FDA701]/10 rounded-2xl flex items-center justify-center mx-auto mb-6 text-[#FDA701]">
-              <Lock className="w-8 h-8" />
-            </div>
-            <h1 className="text-2xl font-bold text-[#1A1A1A] dark:text-white mb-2">Mr. Mango Staff Portal</h1>
-            <p className="text-sm text-gray-500 dark:text-gray-400 mb-6">Sign in with administrator credentials</p>
+            <Link href="/" className="inline-block mb-4">
+              <img src="/brand/logo-primary.png" alt="Mr. Mango" className="h-16 w-auto object-contain mx-auto dark:hidden" />
+              <img src="/brand/logo-dark.png" alt="Mr. Mango" className="h-16 w-auto object-contain mx-auto hidden dark:block" />
+            </Link>
+            <h1 className="text-2xl font-bold text-[#1A1A1A] dark:text-white mb-1">Store Admin Portal</h1>
+            <p className="text-xs text-gray-500 dark:text-gray-400 mb-6">Sign in with administrator credentials</p>
             <form onSubmit={handleLogin} className="space-y-4 text-left">
               <div>
                 <label className="text-xs font-bold text-gray-600 dark:text-gray-300 block mb-1">Admin Email</label>
@@ -521,6 +522,7 @@ export function Admin() {
           <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8 bg-white dark:bg-[#1a1a1a] p-6 rounded-2xl border border-gray-100 dark:border-gray-800 shadow-sm">
             <div>
               <div className="flex items-center gap-3">
+                <img src="/brand/icon.png" alt="Mr. Mango" className="w-10 h-10 object-contain shrink-0" />
                 <h1 className="text-2xl sm:text-3xl font-bold text-[#1A1A1A] dark:text-white">Mr. Mango Store Manager</h1>
                 <span className="text-xs bg-green-100 text-green-800 dark:bg-green-950/50 dark:text-green-400 px-2.5 py-0.5 rounded-full font-bold flex items-center gap-1">
                   <span className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse"></span>

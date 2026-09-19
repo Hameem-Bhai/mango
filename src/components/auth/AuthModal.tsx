@@ -90,8 +90,8 @@ export function AuthModal() {
 
         {/* Brand Header */}
         <div className="text-center mb-6">
-          <div className="w-12 h-12 rounded-2xl bg-[#FDA701]/15 text-[#FDA701] flex items-center justify-center mx-auto mb-3">
-            <ShieldCheck className="w-6 h-6" />
+          <div className="w-16 h-16 rounded-2xl bg-amber-500/10 flex items-center justify-center mx-auto mb-3 p-2">
+            <img src="/brand/icon.png" alt="Mr. Mango" className="w-full h-full object-contain" />
           </div>
           <h2 className="text-2xl font-bold text-[#1A1A1A] dark:text-white">
             {tab === 'register' ? 'Create an Account' : 'Welcome Back'}
