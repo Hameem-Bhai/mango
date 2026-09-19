@@ -37,7 +37,7 @@ router.post('/initiate', async (req, res) => {
       cus_add1: customerAddress || 'Dhaka',
       cus_city: 'Dhaka',
       cus_country: 'Bangladesh',
-      cus_phone: customerPhone || '01700000000',
+      cus_phone: customerPhone || '01880031355',
       shipping_method: 'Courier',
       ship_name: customerName || 'Customer',
       ship_add1: customerAddress || 'Dhaka',

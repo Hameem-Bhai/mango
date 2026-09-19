@@ -65,12 +65,12 @@ export function Footer() {
                   <span className="inline-block w-1.5 h-1.5 rounded-full bg-green-500"></span> 11:00 AM – 11:00 PM (Daily)
                 </p>
                 <a 
-                  href="https://wa.me/8801700000000?text=Hi! I want to visit Mr. Mango Kuril Outlet." 
+                  href="https://wa.me/8801880031355?text=Hi! I want to visit Mr. Mango Kuril Outlet." 
                   target="_blank" 
                   rel="noreferrer"
                   className="mt-2.5 inline-flex items-center gap-1 text-[11px] font-bold text-[#25D366] hover:underline"
                 >
-                  WhatsApp: +880 1700-000000
+                  WhatsApp: +880 1880-031355
                 </a>
               </div>
             </div>

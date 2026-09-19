@@ -25,7 +25,7 @@ export function Cart() {
     customerEmail: '',
   });
 
-  const [paymentMethod, setPaymentMethod] = useState<'sslcommerz' | 'cod'>('cod');
+  const [paymentMethod, setPaymentMethod] = useState<'bkash' | 'cod'>('bkash');
 
   const discountAmount = appliedPromo ? appliedPromo.discount : 0;
   const finalTotal = Math.max(0, subtotal - discountAmount);
@@ -90,7 +90,7 @@ export function Cart() {
         subtotal,
         discount: discountAmount,
         total: finalTotal,
-        paymentMethod: paymentMethod === 'cod' ? 'Cash on Delivery' : 'Online Payment (bKash/Cards)'
+        paymentMethod: paymentMethod === 'cod' ? 'Cash on Delivery (COD)' : 'bKash Payment (Make Payment)'
       };
 
       const res = await fetch('/api/orders', {
@@ -107,7 +107,7 @@ export function Cart() {
         customerName: formData.customerName,
         customerPhone: formData.customerPhone,
         customerAddress: formData.customerAddress,
-        paymentMethod: paymentMethod === 'cod' ? 'Cash on Delivery (COD)' : 'Online Payment (bKash/Nagad)',
+        paymentMethod: paymentMethod === 'cod' ? 'Cash on Delivery (COD)' : 'bKash Payment (01353219518)',
         items: items.map(i => ({
           name: i.name,
           flavor: i.selectedFlavor || i.flavor,
@@ -281,7 +281,7 @@ export function Cart() {
                     <span className="font-bold text-[#1A1A1A] text-lg">Total Amount</span>
                     <span className="font-bold text-2xl text-[#1A1A1A]">৳{Math.round(finalTotal).toLocaleString()}</span>
                   </div>
-                  <p className="text-xs text-gray-400 mt-1">Accepts bKash, Nagad, Cards & Cash on Delivery</p>
+                  <p className="text-xs text-gray-500 mt-1">Accepts bKash Payment (01353219518) & Cash on Delivery</p>
                 </div>
 
                 {!showCheckout ? (
@@ -293,42 +293,47 @@ export function Cart() {
                     <h3 className="font-bold text-lg mb-2">Delivery Details</h3>
                     <Input placeholder="Full Name" name="customerName" required value={formData.customerName} onChange={handleInputChange} />
                     <Input placeholder="Phone (WhatsApp)" name="customerPhone" required value={formData.customerPhone} onChange={handleInputChange} />
-                    <Input placeholder="Delivery Address (Dhaka area)" name="customerAddress" required value={formData.customerAddress} onChange={handleInputChange} />
+                    <Input placeholder="Delivery Address (Dhaka or nationwide)" name="customerAddress" required value={formData.customerAddress} onChange={handleInputChange} />
                     <Input placeholder="Email (Optional)" name="customerEmail" type="email" value={formData.customerEmail} onChange={handleInputChange} />
                     
                     <h3 className="font-bold text-lg mt-6 mb-2">Payment Method</h3>
                     
                     <div className="space-y-3">
-                      <label className={`block border rounded-xl p-4 cursor-pointer transition-colors ${paymentMethod === 'sslcommerz' ? 'border-[#FDA701] bg-[#FDA701]/5' : 'border-gray-200 hover:border-[#FDA701]/50'}`}>
+                      <label className={`block border-2 rounded-2xl p-4 cursor-pointer transition-all ${paymentMethod === 'bkash' ? 'border-[#e2136e] bg-[#e2136e]/5 shadow-sm' : 'border-gray-200 hover:border-[#e2136e]/40'}`}>
                         <div className="flex items-start gap-3">
-                          <div className={`w-5 h-5 rounded-full border flex items-center justify-center shrink-0 mt-0.5 ${paymentMethod === 'sslcommerz' ? 'border-[#FDA701] bg-[#FDA701]' : 'border-gray-300'}`}>
-                            {paymentMethod === 'sslcommerz' && <Check className="w-3 h-3 text-white" />}
+                          <div className={`w-5 h-5 rounded-full border flex items-center justify-center shrink-0 mt-0.5 ${paymentMethod === 'bkash' ? 'border-[#e2136e] bg-[#e2136e]' : 'border-gray-300'}`}>
+                            {paymentMethod === 'bkash' && <Check className="w-3 h-3 text-white" />}
                           </div>
-                          <div>
-                            <span className="font-bold block mb-1">Online Payment</span>
-                            <span className="text-xs text-gray-500 block mb-2">Pay securely with bKash, Nagad, Cards</span>
-                            <PaymentMethods />
+                          <div className="flex-1">
+                            <div className="flex items-center justify-between">
+                              <span className="font-bold text-sm text-[#1A1A1A] flex items-center gap-1.5">
+                                <span className="w-2.5 h-2.5 rounded-full bg-[#e2136e]"></span>
+                                bKash Payment (Make Payment)
+                              </span>
+                              <span className="text-[11px] bg-[#e2136e] text-white font-bold px-2 py-0.5 rounded-md">
+                                01353219518
+                              </span>
+                            </div>
+                            <p className="text-xs text-gray-500 mt-1">
+                              Pay via bKash App &gt; <strong>Make Payment</strong> option to <strong>01353219518</strong> (Not Send Money). Submit TrxID upon checkout.
+                            </p>
                           </div>
                         </div>
-                        <input type="radio" name="paymentMethod" value="sslcommerz" checked={paymentMethod === 'sslcommerz'} onChange={() => setPaymentMethod('sslcommerz')} className="hidden" />
+                        <input type="radio" name="paymentMethod" value="bkash" checked={paymentMethod === 'bkash'} onChange={() => setPaymentMethod('bkash')} className="hidden" />
                       </label>
 
-                      <label className={`block border rounded-xl p-4 cursor-pointer transition-colors ${paymentMethod === 'cod' ? 'border-[#FDA701] bg-[#FDA701]/5' : 'border-gray-200 hover:border-[#FDA701]/50'}`}>
+                      <label className={`block border-2 rounded-2xl p-4 cursor-pointer transition-all ${paymentMethod === 'cod' ? 'border-[#FDA701] bg-[#FDA701]/5 shadow-sm' : 'border-gray-200 hover:border-[#FDA701]/40'}`}>
                         <div className="flex items-start gap-3">
                           <div className={`w-5 h-5 rounded-full border flex items-center justify-center shrink-0 mt-0.5 ${paymentMethod === 'cod' ? 'border-[#FDA701] bg-[#FDA701]' : 'border-gray-300'}`}>
                             {paymentMethod === 'cod' && <Check className="w-3 h-3 text-white" />}
                           </div>
                           <div>
-                            <span className="font-bold block">Cash on Delivery (COD)</span>
-                            <span className="text-xs text-gray-500">Only available for Dhaka</span>
+                            <span className="font-bold text-sm text-[#1A1A1A] block">Cash on Delivery (COD)</span>
+                            <span className="text-xs text-gray-500">Pay cash upon delivery. Same-day inside Dhaka (৳60), 2-3 days nationwide (৳120).</span>
                           </div>
                         </div>
                         <input type="radio" name="paymentMethod" value="cod" checked={paymentMethod === 'cod'} onChange={() => setPaymentMethod('cod')} className="hidden" />
                       </label>
-                    </div>
-
-                    <div className="text-xs text-amber-600 bg-amber-50 p-3 rounded-lg border border-amber-200 mt-4">
-                      SSLCommerz integration active. Add your Store ID in server/routes/payment.ts for live payments.
                     </div>
                     
                     <Button type="submit" disabled={isProcessing} className="w-full h-14 text-lg font-bold bg-[#1A1A1A] hover:bg-black text-[#FAF5E7] mt-4">

@@ -51,7 +51,10 @@ router.post('/', (req, res) => {
             shipping = 0, 
             total, 
             paymentMethod = 'Cash on Delivery',
-            status = 'placed'
+            status = 'placed',
+            trxId = '',
+            senderPhone = '',
+            paymentStatus = 'pending'
         } = req.body;
         
         if (!items || (!email && !customerPhone)) {
@@ -65,8 +68,8 @@ router.post('/', (req, res) => {
         }
         
         const stmt = db.prepare(`
-            INSERT INTO orders (orderNumber, customerName, customerPhone, customerAddress, email, items, subtotal, discount, shipping, total, paymentMethod, status)
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+            INSERT INTO orders (orderNumber, customerName, customerPhone, customerAddress, email, items, subtotal, discount, shipping, total, paymentMethod, status, trxId, senderPhone, paymentStatus)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
         `);
         
         const result = stmt.run(
@@ -81,13 +84,48 @@ router.post('/', (req, res) => {
             Number(shipping || 0),
             Number(total),
             paymentMethod,
-            status
+            status,
+            trxId,
+            senderPhone,
+            trxId ? 'submitted' : paymentStatus
         );
         
         res.status(201).json({ success: true, id: result.lastInsertRowid, orderNumber });
     } catch (error) {
         console.error('Error creating order:', error);
         res.status(500).json({ error: 'Failed to create order' });
+    }
+});
+
+// Customer/Admin: Submit or update payment TrxID
+router.patch('/:orderNumber/payment', (req, res) => {
+    try {
+        const orderNumber = req.params.orderNumber;
+        const { trxId, senderPhone, paymentStatus = 'submitted' } = req.body;
+
+        const existing = db.prepare('SELECT * FROM orders WHERE orderNumber = ?').get(orderNumber);
+        if (!existing) {
+            return res.status(404).json({ error: 'Order not found' });
+        }
+
+        db.prepare(`
+            UPDATE orders SET
+                trxId = ?,
+                senderPhone = ?,
+                paymentStatus = ?
+            WHERE orderNumber = ?
+        `).run(
+            trxId !== undefined ? trxId : (existing.trxId || ''),
+            senderPhone !== undefined ? senderPhone : (existing.senderPhone || ''),
+            paymentStatus,
+            orderNumber
+        );
+
+        const updated = db.prepare('SELECT * FROM orders WHERE orderNumber = ?').get(orderNumber);
+        res.json({ success: true, message: 'Payment information updated successfully', order: updated });
+    } catch (error) {
+        console.error('Error updating payment:', error);
+        res.status(500).json({ error: 'Failed to update payment information' });
     }
 });
 
@@ -108,6 +146,9 @@ router.put('/:id', (req, res) => {
         const customerPhone = body.customerPhone !== undefined ? body.customerPhone : existing.customerPhone;
         const customerAddress = body.customerAddress !== undefined ? body.customerAddress : existing.customerAddress;
         const paymentMethod = body.paymentMethod !== undefined ? body.paymentMethod : existing.paymentMethod;
+        const trxId = body.trxId !== undefined ? body.trxId : (existing.trxId || '');
+        const senderPhone = body.senderPhone !== undefined ? body.senderPhone : (existing.senderPhone || '');
+        const paymentStatus = body.paymentStatus !== undefined ? body.paymentStatus : (existing.paymentStatus || 'pending');
 
         db.prepare(`
             UPDATE orders SET
@@ -115,7 +156,10 @@ router.put('/:id', (req, res) => {
                 customerName = ?,
                 customerPhone = ?,
                 customerAddress = ?,
-                paymentMethod = ?
+                paymentMethod = ?,
+                trxId = ?,
+                senderPhone = ?,
+                paymentStatus = ?
             WHERE id = ?
         `).run(
             status,
@@ -123,6 +167,9 @@ router.put('/:id', (req, res) => {
             customerPhone,
             customerAddress,
             paymentMethod,
+            trxId,
+            senderPhone,
+            paymentStatus,
             existing.id
         );
 

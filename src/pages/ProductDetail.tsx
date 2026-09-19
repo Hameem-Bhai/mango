@@ -314,7 +314,7 @@ export function ProductDetail() {
               )}
               
               <a 
-                href={`https://wa.me/8801700000000?text=Hi! I want to order: ${encodeURIComponent(product.name)}${selectedFlavor ? ` (Flavor: ${encodeURIComponent(selectedFlavor)})` : ''}`} 
+                href={`https://wa.me/8801880031355?text=Hi! I want to order: ${encodeURIComponent(product.name)}${selectedFlavor ? ` (Flavor: ${encodeURIComponent(selectedFlavor)})` : ''}`} 
                 target="_blank" 
                 rel="noreferrer"
               >

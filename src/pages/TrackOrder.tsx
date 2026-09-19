@@ -114,7 +114,7 @@ export function TrackOrder() {
               <p className="font-bold mb-1">Order Not Found</p>
               <p className="text-sm mb-4">{errorMsg}</p>
               <a 
-                href={`https://wa.me/8801700000000?text=Hi Mr. Mango, I am having trouble tracking my order: ${encodeURIComponent(orderNumber)}`} 
+                href={`https://wa.me/8801880031355?text=Hi Mr. Mango, I am having trouble tracking my order: ${encodeURIComponent(orderNumber)}`} 
                 target="_blank" 
                 rel="noreferrer"
               >
@@ -236,7 +236,7 @@ export function TrackOrder() {
               {/* Need assistance button */}
               <div className="pt-2 text-center">
                 <a 
-                  href={`https://wa.me/8801700000000?text=Hi Mr. Mango, inquiring about my order: ${orderData.orderNumber}`}
+                  href={`https://wa.me/8801880031355?text=Hi Mr. Mango, inquiring about my order: ${orderData.orderNumber}`}
                   target="_blank"
                   rel="noreferrer"
                 >

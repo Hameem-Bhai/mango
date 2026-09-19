@@ -97,7 +97,7 @@ export function Contact() {
                 </h3>
               </div>
               <a 
-                href="https://wa.me/8801700000000?text=Hi! I want to visit Mr. Mango Kuril Outlet beside AIUB."
+                href="https://wa.me/8801880031355?text=Hi!%20I%20want%20to%20visit%20Mr.%20Mango%20Kuril%20Outlet%20beside%20AIUB."
                 target="_blank"
                 rel="noreferrer"
               >
@@ -131,7 +131,7 @@ export function Contact() {
                   <Phone className="h-4 w-4 text-[#076136]" /> Hotline & WhatsApp:
                 </strong>
                 <p className="text-gray-600 dark:text-gray-300 font-medium">
-                  +880 1700-000000
+                  +880 1880-031355
                 </p>
               </div>
             </div>
@@ -250,7 +250,7 @@ export function Contact() {
                   <Phone className="h-5 w-5 text-[#076136] shrink-0 mt-0.5" />
                   <div>
                     <h4 className="font-bold text-[#1A1A1A]">Helpline</h4>
-                    <p className="text-gray-600">+880 1700-000000</p>
+                    <p className="text-gray-600">+880 1880-031355</p>
                     <p className="text-xs text-gray-400">11:00 AM – 11:00 PM</p>
                   </div>
                 </div>

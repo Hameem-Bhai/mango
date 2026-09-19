@@ -102,7 +102,7 @@ export function Wholesale() {
               <MessageCircle className="w-10 h-10 text-[#25D366] mx-auto mb-3" />
               <h3 className="font-bold text-[#1A1A1A] dark:text-white mb-2">Need Immediate Assistance?</h3>
               <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">Chat with our wholesale team directly on WhatsApp.</p>
-              <a href="https://wa.me/8801700000000?text=Hi! I want to know about wholesale pricing." target="_blank" rel="noreferrer">
+              <a href="https://wa.me/8801880031355?text=Hi!%20I%20want%20to%20know%20about%20wholesale%20pricing." target="_blank" rel="noreferrer">
                 <Button className="w-full bg-[#25D366] hover:bg-[#20b858] text-white font-bold">
                   WhatsApp Us
                 </Button>

@@ -48,7 +48,7 @@ export function About() {
                 </h3>
               </div>
               <a 
-                href="https://wa.me/8801700000000?text=Hi! I want to visit Mr. Mango Kuril Outlet." 
+                href="https://wa.me/8801880031355?text=Hi!%20I%20want%20to%20visit%20Mr.%20Mango%20Kuril%20Outlet." 
                 target="_blank" 
                 rel="noreferrer"
               >
@@ -84,7 +84,7 @@ export function About() {
                   <Phone className="h-4 w-4 text-[#076136]" /> Hotline / WhatsApp:
                 </strong>
                 <p className="text-gray-600 dark:text-gray-300 font-medium">
-                  +880 1700-000000
+                  +880 1880-031355
                 </p>
               </div>
             </div>

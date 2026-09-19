@@ -19,12 +19,12 @@ export function WhatsAppButton() {
               <p className="text-[11px] text-gray-500 dark:text-gray-400">Tong Market, Beside AIUB Main Gate</p>
             </div>
             <a
-              href="https://wa.me/8801700000000?text=Hi! I have a question for Mr. Mango Kuril Outlet."
+              href="https://wa.me/8801880031355?text=Hi! I have a question for Mr. Mango Kuril Outlet."
               target="_blank"
               rel="noopener noreferrer"
               className="px-4 py-3 hover:bg-gray-50 dark:hover:bg-gray-800 flex items-center gap-2.5 text-[#1A1A1A] dark:text-white font-medium text-sm transition-colors"
             >
-              <span className="text-lg">💬</span> Chat: +880 1700-000000
+              <span className="text-lg">💬</span> Chat: +880 1880-031355
             </a>
           </motion.div>
         )}

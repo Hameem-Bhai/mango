@@ -146,9 +146,9 @@ export function FAQ() {
                     Contact Form
                   </Button>
                 </Link>
-                <a href="https://wa.me/8801700000000" target="_blank" rel="noreferrer">
+                <a href="https://wa.me/8801880031355" target="_blank" rel="noreferrer">
                   <Button variant="outline" className="border-[#25D366] text-[#25D366] hover:bg-[#25D366] hover:text-white font-bold px-6 h-12 gap-2">
-                    <MessageSquare className="w-4 h-4" /> WhatsApp Us (+8801700000000)
+                    <MessageSquare className="w-4 h-4" /> WhatsApp Us (+880 1880-031355)
                   </Button>
                 </a>
               </div>

@@ -337,6 +337,26 @@ export function Admin() {
     }
   };
 
+  const handleVerifyPayment = async (orderId: number, orderNumber: string) => {
+    try {
+      const res = await fetch(`/api/orders/${orderId}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ paymentStatus: 'verified', status: 'confirmed' })
+      });
+      if (res.ok) {
+        setOrders(prev => prev.map(o => o.id === orderId ? { ...o, paymentStatus: 'verified', status: 'confirmed' } : o));
+        toast({
+          title: 'bKash Payment Verified',
+          description: `Order ${orderNumber} payment verified & set to CONFIRMED.`
+        });
+      }
+    } catch (err) {
+      console.error('Payment verify error:', err);
+      toast({ title: 'Verify Error', description: 'Could not verify payment.', variant: 'destructive' });
+    }
+  };
+
   const handleDeleteOrder = async (orderId: number, orderNumber: string) => {
     if (!window.confirm(`Delete order ${orderNumber}? This cannot be undone.`)) return;
     try {
@@ -901,6 +921,43 @@ export function Admin() {
                             )}
                           </div>
                         </div>
+
+                        {/* bKash Payment / TrxID Verification Banner */}
+                        {ord.trxId || ord.senderPhone ? (
+                          <div className="mt-3 p-3 bg-pink-50 dark:bg-pink-950/20 border border-[#e2136e]/30 rounded-xl flex flex-wrap items-center justify-between gap-2">
+                            <div className="flex flex-wrap items-center gap-2">
+                              <span className="text-[11px] font-bold bg-[#e2136e] text-white px-2 py-0.5 rounded">bKash Payment</span>
+                              {ord.trxId && (
+                                <span className="text-xs font-mono font-bold text-gray-800 dark:text-gray-200 bg-white dark:bg-black px-2 py-0.5 rounded border border-gray-200 dark:border-gray-700">
+                                  TrxID: {ord.trxId}
+                                </span>
+                              )}
+                              {ord.senderPhone && (
+                                <span className="text-xs text-gray-600 dark:text-gray-400">
+                                  Sender: <strong className="text-gray-900 dark:text-white">{ord.senderPhone}</strong>
+                                </span>
+                              )}
+                            </div>
+                            <div className="flex items-center gap-2">
+                              <span className={`text-xs font-bold px-2.5 py-0.5 rounded-full ${
+                                ord.paymentStatus === 'verified'
+                                  ? 'bg-green-100 text-green-800 dark:bg-green-900/40 dark:text-green-300'
+                                  : 'bg-amber-100 text-amber-800 dark:bg-amber-900/40 dark:text-amber-300'
+                              }`}>
+                                {ord.paymentStatus === 'verified' ? '✓ Verified' : 'Pending Verification'}
+                              </span>
+                              {ord.paymentStatus !== 'verified' && (
+                                <Button
+                                  size="sm"
+                                  onClick={() => handleVerifyPayment(ord.id, ord.orderNumber)}
+                                  className="h-7 text-xs bg-[#076136] hover:bg-[#054d2b] text-white font-bold px-3"
+                                >
+                                  <Check className="w-3.5 h-3.5 mr-1" /> Mark Verified
+                                </Button>
+                              )}
+                            </div>
+                          </div>
+                        ) : null}
 
                         <div className="mt-4 pt-3 border-t border-gray-100 dark:border-gray-800 flex justify-between items-center">
                           <div className="flex gap-2">

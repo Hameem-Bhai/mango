@@ -513,7 +513,7 @@ export function Navbar() {
                     2nd floor, Tong Market, Kuril, Beside Main gate of AIUB, Dhaka.
                   </p>
                   <p className="text-[11px] text-gray-500">⏰ 11:00 AM – 11:00 PM (Everyday)</p>
-                  <p className="text-[11px] text-[#25D366] font-semibold">📞 Hotline / WhatsApp: +880 1700-000000</p>
+                  <p className="text-[11px] text-[#25D366] font-semibold">📞 Hotline / WhatsApp: +880 1880-031355</p>
                 </div>
 
               </div>

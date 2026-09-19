@@ -9,8 +9,8 @@ export function Outlets() {
     badge: 'Official Outlet',
     address: '2nd Floor, Tong Market, Kuril, Beside Main Gate of AIUB, Dhaka, Bangladesh',
     hours: '11:00 AM – 11:00 PM (Open 7 Days)',
-    phone: '+880 1700-000000',
-    whatsapp: '+880 1700-000000',
+    phone: '+880 1880-031355',
+    whatsapp: '+880 1880-031355',
     description: 'Our physical outlet conveniently located right beside AIUB main gate in Kuril. Visit us for 100% authentic disposable vapes, imported e-liquids, refillable pod kits, coils, and device testing.',
     features: [
       'Beside AIUB Main Gate',
@@ -64,7 +64,7 @@ export function Outlets() {
 
                 <div className="flex flex-wrap gap-3 pt-2">
                   <a 
-                    href="https://wa.me/8801700000000?text=Hi! I want to visit Mr. Mango Kuril Outlet." 
+                    href="https://wa.me/8801880031355?text=Hi! I want to visit Mr. Mango Kuril Outlet." 
                     target="_blank" 
                     rel="noreferrer"
                     className="flex-1 sm:flex-initial"
