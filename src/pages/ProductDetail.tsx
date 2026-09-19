@@ -349,42 +349,44 @@ export function ProductDetail() {
       <AnimatePresence>
         {isSticky && product.inStock && (
           <motion.div 
-            initial={{ y: -100 }}
-            animate={{ y: 0 }}
-            exit={{ y: -100 }}
-            className="fixed top-[72px] md:top-20 left-0 right-0 bg-white shadow-md z-40 border-b border-gray-200 py-3"
+            initial={{ y: 80, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            exit={{ y: 80, opacity: 0 }}
+            className="fixed bottom-16 md:bottom-0 left-0 right-0 z-40 backdrop-blur-xl bg-white/95 dark:bg-[#141414]/95 border-t border-gray-200/80 dark:border-gray-800 shadow-[0_-10px_25px_rgba(0,0,0,0.1)] py-2.5 sm:py-3"
           >
-            <div className="container mx-auto px-4 flex items-center justify-between gap-4">
-              <div className="flex items-center gap-3 overflow-hidden">
+            <div className="container mx-auto px-4 flex items-center justify-between gap-3 sm:gap-4 max-w-5xl">
+              <div className="flex items-center gap-2.5 overflow-hidden">
                 <img 
                   src={product.imageUrl || '/brand/icon.png'} 
                   alt="" 
-                  className="w-10 h-10 object-contain hidden sm:block" 
+                  className="w-10 h-10 object-contain rounded-lg shrink-0 hidden xs:block" 
                   onError={(e) => { (e.target as HTMLImageElement).src = '/brand/icon.png'; }}
                 />
-                <div className="flex flex-col overflow-hidden">
-                  <span className="font-bold text-[#1A1A1A] truncate">{product.name}</span>
-                  <span className="text-[#FDA701] font-bold">৳{Math.round(product.price).toLocaleString()}</span>
+                <div className="flex flex-col overflow-hidden leading-tight">
+                  <span className="font-bold text-xs sm:text-sm text-[#1A1A1A] dark:text-white truncate">{product.name}</span>
+                  <span className="text-[#FDA701] font-bold text-sm sm:text-base">৳{Math.round(product.price).toLocaleString()}</span>
                 </div>
               </div>
-              <div className="flex items-center gap-3 shrink-0">
-                <div className="hidden sm:flex items-center border border-gray-300 rounded h-10 w-24">
+
+              <div className="flex items-center gap-2 sm:gap-3 shrink-0">
+                <div className="flex items-center border border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-[#222] rounded-xl h-9 sm:h-10 w-20 sm:w-24">
                   <button 
-                    className="flex-1 text-gray-500"
+                    className="flex-1 text-gray-500 hover:text-black dark:hover:text-white font-bold text-sm"
                     onClick={() => setQuantity(Math.max(1, quantity - 1))}
                   >
                     -
                   </button>
-                  <span className="font-medium w-6 text-center text-sm">{quantity}</span>
+                  <span className="font-bold w-5 sm:w-6 text-center text-xs sm:text-sm text-[#1A1A1A] dark:text-white">{quantity}</span>
                   <button 
-                    className="flex-1 text-gray-500"
+                    className="flex-1 text-gray-500 hover:text-black dark:hover:text-white font-bold text-sm"
                     onClick={() => setQuantity(quantity + 1)}
                   >
                     +
                   </button>
                 </div>
+
                 <Button 
-                  className="bg-[#FDA701] hover:bg-[#e59600] text-[#1A1A1A] font-bold px-6"
+                  className="bg-[#FDA701] hover:bg-[#e59600] active:scale-95 text-[#1A1A1A] font-bold h-9 sm:h-10 px-4 sm:px-6 text-xs sm:text-sm rounded-xl shadow-sm"
                   onClick={handleAddToCart}
                 >
                   Add to Cart

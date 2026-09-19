@@ -73,29 +73,38 @@ export function ProductCard({ product }: ProductCardProps) {
           />
         </div>
 
-        <div className="p-5 flex flex-col flex-grow">
-          <h3 className="font-bold text-[#1A1A1A] line-clamp-2 mb-1">{product.name}</h3>
-          <p className="text-sm text-gray-500 mb-2">{(product as any).flavor || product.flavor_profile}</p>
+        <div className="p-4 sm:p-5 flex flex-col flex-grow">
+          <h3 className="font-bold text-[#1A1A1A] dark:text-white line-clamp-2 mb-1 text-sm sm:text-base leading-snug">
+            {product.name}
+          </h3>
+          <p className="text-xs sm:text-sm text-gray-500 dark:text-gray-400 mb-2 truncate">
+            {(product as any).flavor || product.flavor_profile}
+          </p>
           
-          <div className="mt-auto flex flex-col gap-2">
+          <div className="mt-auto flex flex-col gap-2 pt-2">
             <div className="flex items-center justify-between">
               <div className="flex flex-col">
                 {product.compareAtPrice && (
-                  <span className="text-xs text-gray-400 line-through">৳{Math.round(product.compareAtPrice).toLocaleString()}</span>
+                  <span className="text-[11px] sm:text-xs text-gray-400 line-through">
+                    ৳{Math.round(product.compareAtPrice).toLocaleString()}
+                  </span>
                 )}
-                <span className="font-bold text-lg text-[#1A1A1A]">৳{Math.round(product.price).toLocaleString()}</span>
+                <span className="font-bold text-base sm:text-lg text-[#1A1A1A] dark:text-[#FAF5E7]">
+                  ৳{Math.round(product.price).toLocaleString()}
+                </span>
               </div>
               
               <Button 
                 size="icon" 
                 className={cn(
-                  "rounded-full h-10 w-10 transition-transform hover:scale-110", 
-                  !product.inStock ? "bg-gray-200 text-gray-400" : "bg-[#FDA701] hover:bg-[#e59600] text-[#1A1A1A]"
+                  "rounded-full h-9 w-9 sm:h-10 sm:w-10 transition-transform active:scale-85 hover:scale-105 shadow-sm", 
+                  !product.inStock ? "bg-gray-200 text-gray-400 dark:bg-gray-800" : "bg-[#FDA701] hover:bg-[#e59600] text-[#1A1A1A]"
                 )}
                 disabled={!product.inStock}
                 onClick={handleAddToCart}
+                title={product.inStock ? 'Add to Cart' : 'Out of Stock'}
               >
-                <Plus className="h-5 w-5" />
+                <Plus className="h-4 w-4 sm:h-5 sm:w-5" />
               </Button>
             </div>
           </div>
