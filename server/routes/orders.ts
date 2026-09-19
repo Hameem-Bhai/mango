@@ -108,6 +108,23 @@ router.patch('/:orderNumber/payment', (req, res) => {
             return res.status(404).json({ error: 'Order not found' });
         }
 
+        const cleanTrx = String(trxId || '').trim().toUpperCase();
+        const cleanPhone = String(senderPhone || '').trim().replace(/[^0-9]/g, '');
+
+        // Strict bKash TrxID format validation: must be 8-12 alphanumeric characters
+        if (!cleanTrx || !/^[A-Z0-9]{8,12}$/.test(cleanTrx)) {
+            return res.status(400).json({ 
+                error: 'Invalid bKash Transaction ID format. Must be 8-12 alphanumeric characters (e.g. BL48A9CD81).' 
+            });
+        }
+
+        // Strict Bangladeshi phone number validation: 11 digits starting with 01[3-9]
+        if (!cleanPhone || !/^(?:88)?01[3-9]\d{8}$/.test(cleanPhone)) {
+            return res.status(400).json({ 
+                error: 'Invalid bKash sender phone number. Must be a valid 11-digit Bangladeshi mobile number (e.g. 01XXXXXXXXX).' 
+            });
+        }
+
         db.prepare(`
             UPDATE orders SET
                 trxId = ?,
@@ -115,8 +132,8 @@ router.patch('/:orderNumber/payment', (req, res) => {
                 paymentStatus = ?
             WHERE orderNumber = ?
         `).run(
-            trxId !== undefined ? trxId : (existing.trxId || ''),
-            senderPhone !== undefined ? senderPhone : (existing.senderPhone || ''),
+            cleanTrx,
+            cleanPhone,
             paymentStatus,
             orderNumber
         );

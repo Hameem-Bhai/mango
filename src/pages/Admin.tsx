@@ -1,4 +1,4 @@
-import { useState, useEffect, useMemo } from 'react';
+import { useState, useEffect, useMemo, useRef } from 'react';
 import { Link } from 'wouter';
 import { SEO } from '@/components/SEO';
 import { Button } from '@/components/ui/button';
@@ -7,7 +7,7 @@ import { useToast } from '@/hooks/use-toast';
 import { 
   Package, ShoppingCart, Users, Plus, Edit2, Trash2, Check, X, 
   Search, Lock, Unlock, RefreshCw, ExternalLink, MessageCircle,
-  Mail, Download, Phone, MapPin, Clock, Copy
+  Mail, Download, Phone, MapPin, Clock, Copy, Volume2, VolumeX, Bell
 } from 'lucide-react';
 import { Product } from '@/types';
 
@@ -52,6 +52,44 @@ function formatBdPhoneForWhatsApp(raw: string): string {
   return digits;
 }
 
+function playOrderChime() {
+  try {
+    const AudioContextClass = window.AudioContext || (window as any).webkitAudioContext;
+    if (!AudioContextClass) return;
+    const ctx = new AudioContextClass();
+    if (ctx.state === 'suspended') {
+      ctx.resume();
+    }
+    const now = ctx.currentTime;
+
+    // First pleasant tone (G5 - 784 Hz)
+    const osc1 = ctx.createOscillator();
+    const gain1 = ctx.createGain();
+    osc1.type = 'sine';
+    osc1.frequency.setValueAtTime(783.99, now);
+    gain1.gain.setValueAtTime(0.3, now);
+    gain1.gain.exponentialRampToValueAtTime(0.001, now + 0.45);
+    osc1.connect(gain1);
+    gain1.connect(ctx.destination);
+    osc1.start(now);
+    osc1.stop(now + 0.45);
+
+    // Second celebratory chime tone (C6 - 1046.5 Hz)
+    const osc2 = ctx.createOscillator();
+    const gain2 = ctx.createGain();
+    osc2.type = 'sine';
+    osc2.frequency.setValueAtTime(1046.5, now + 0.18);
+    gain2.gain.setValueAtTime(0.4, now + 0.18);
+    gain2.gain.exponentialRampToValueAtTime(0.0001, now + 0.9);
+    osc2.connect(gain2);
+    gain2.connect(ctx.destination);
+    osc2.start(now + 0.18);
+    osc2.stop(now + 0.9);
+  } catch {
+    // AudioContext blocked or not supported
+  }
+}
+
 export function Admin() {
   const { toast } = useToast();
 
@@ -70,6 +108,21 @@ export function Admin() {
   const [waitlist, setWaitlist] = useState<any[]>([]);
   const [inquiries, setInquiries] = useState<any[]>([]);
   const [subscribers, setSubscribers] = useState<any[]>([]);
+
+  const [soundEnabled, setSoundEnabled] = useState<boolean>(() => {
+    return localStorage.getItem('mrmango_admin_sound') !== 'false';
+  });
+  const knownOrderIdsRef = useRef<Set<any>>(new Set());
+  const initialLoadDoneRef = useRef(false);
+
+  const toggleSound = () => {
+    setSoundEnabled(prev => {
+      const next = !prev;
+      localStorage.setItem('mrmango_admin_sound', String(next));
+      if (next) playOrderChime();
+      return next;
+    });
+  };
 
   const [isLoading, setIsLoading] = useState(false);
   const [togglingStockId, setTogglingStockId] = useState<string | number | null>(null);
@@ -151,7 +204,14 @@ export function Admin() {
       ]);
 
       if (prodRes.ok) setProducts(await prodRes.json());
-      if (orderRes.ok) setOrders(await orderRes.json());
+      if (orderRes.ok) {
+        const orderData = await orderRes.json();
+        setOrders(orderData);
+        if (!initialLoadDoneRef.current) {
+          knownOrderIdsRef.current = new Set(orderData.map((o: any) => o.id));
+          initialLoadDoneRef.current = true;
+        }
+      }
       if (waitRes.ok) setWaitlist(await waitRes.json());
       if (inqRes.ok) setInquiries(await inqRes.json());
       if (subRes.ok) setSubscribers(await subRes.json());
@@ -172,6 +232,43 @@ export function Admin() {
       fetchAllData();
     }
   }, [isAuthenticated]);
+
+  // Real-time order polling (every 15 seconds) with sound alert
+  useEffect(() => {
+    if (!isAuthenticated) return;
+
+    const interval = setInterval(async () => {
+      try {
+        const res = await fetch('/api/orders');
+        if (!res.ok) return;
+        const freshOrders: any[] = await res.json();
+        
+        if (initialLoadDoneRef.current) {
+          const newOrders = freshOrders.filter(o => !knownOrderIdsRef.current.has(o.id));
+          if (newOrders.length > 0) {
+            if (soundEnabled) {
+              playOrderChime();
+            }
+            newOrders.forEach(o => {
+              toast({
+                title: '🔔 New Order Received!',
+                description: `Order #${o.orderNumber} - ৳${Number(o.total || 0).toLocaleString()} (${o.customerName || 'Customer'})`,
+              });
+            });
+          }
+        } else {
+          initialLoadDoneRef.current = true;
+        }
+
+        knownOrderIdsRef.current = new Set(freshOrders.map(o => o.id));
+        setOrders(freshOrders);
+      } catch (err) {
+        // Silent poll error
+      }
+    }, 15000);
+
+    return () => clearInterval(interval);
+  }, [isAuthenticated, soundEnabled, toast]);
 
   // Product Actions
   const handleOpenAddModal = () => {
@@ -534,6 +631,20 @@ export function Admin() {
               </p>
             </div>
             <div className="flex flex-wrap items-center gap-2">
+              <Button 
+                variant="outline" 
+                size="sm" 
+                onClick={toggleSound} 
+                className={`gap-1.5 text-xs transition-colors ${
+                  soundEnabled 
+                    ? 'border-amber-400/60 text-amber-600 dark:text-amber-400 bg-amber-50/50 dark:bg-amber-950/20' 
+                    : 'text-gray-400 border-dashed'
+                }`}
+                title={soundEnabled ? 'Live Order Chime Active (click to mute)' : 'Order Chime Muted (click to enable)'}
+              >
+                {soundEnabled ? <Volume2 className="w-3.5 h-3.5 text-amber-500 animate-pulse" /> : <VolumeX className="w-3.5 h-3.5" />}
+                {soundEnabled ? 'Chime Alert ON' : 'Chime Muted'}
+              </Button>
               <Button variant="outline" size="sm" onClick={fetchAllData} disabled={isLoading} className="gap-1.5 text-xs">
                 <RefreshCw className={`w-3.5 h-3.5 ${isLoading ? 'animate-spin' : ''}`} /> Refresh
               </Button>

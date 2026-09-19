@@ -74,13 +74,26 @@ export function OrderConfirmation() {
 
   const handleTrxSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!trxId.trim()) {
-      setSubmitError('Please enter your bKash Transaction ID (TrxID)');
+    setSubmitError('');
+
+    const cleanTrx = trxId.trim().toUpperCase();
+    const cleanPhone = senderPhone.trim().replace(/[^0-9]/g, '');
+
+    // Strict bKash TrxID check: Must be 8 to 12 alphanumeric characters (standard is 10)
+    const trxRegex = /^[A-Z0-9]{8,12}$/;
+    if (!trxRegex.test(cleanTrx)) {
+      setSubmitError('Invalid bKash Transaction ID. A valid TrxID must be 8 to 12 characters (e.g., BL48A9CD81). Please check your bKash SMS.');
+      return;
+    }
+
+    // BD Phone check: must be 11 digits starting with 01
+    const bdPhoneRegex = /^(?:88)?01[3-9]\d{8}$/;
+    if (!bdPhoneRegex.test(cleanPhone)) {
+      setSubmitError('Invalid bKash phone number. Please enter a valid 11-digit Bangladeshi mobile number (e.g., 01XXXXXXXXX).');
       return;
     }
 
     setIsSubmittingTrx(true);
-    setSubmitError('');
 
     try {
       const res = await fetch(`/api/orders/${orderInfo.orderNumber}/payment`, {
