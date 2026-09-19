@@ -7,6 +7,7 @@ import { CartProvider } from '@/hooks/useCart';
 import { CompareProvider } from '@/hooks/useComparison';
 import { AuthProvider } from '@/hooks/useAuth';
 import { AuthModal } from '@/components/auth/AuthModal';
+import { AgeVerificationModal } from '@/components/ui/AgeVerificationModal';
 import { Layout } from '@/components/layout/Layout';
 
 // Pages
@@ -70,6 +71,7 @@ function App() {
                   </Switch>
                 </Layout>
                 <AuthModal />
+                <AgeVerificationModal />
                 <Toaster />
               </CartProvider>
             </AuthProvider>

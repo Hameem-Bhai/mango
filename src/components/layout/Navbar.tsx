@@ -14,6 +14,7 @@ import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import { Input } from '@/components/ui/input';
 import { Product } from '@/types';
 import { DeveloperModal } from '@/components/ui/DeveloperModal';
+import { OutletStatusBadge } from '@/components/ui/OutletStatusBadge';
 
 export function Navbar() {
   const { itemCount, toggleCart } = useCart();
@@ -120,11 +121,14 @@ export function Navbar() {
     <header className={`sticky top-0 z-40 transition-all duration-300 ${isScrolled ? 'bg-white/95 dark:bg-[#141414]/95 backdrop-blur-md shadow-sm border-b border-gray-100 dark:border-gray-800' : 'bg-white dark:bg-[#141414] border-b border-gray-100 dark:border-gray-800'}`}>
       <div className="container mx-auto px-4 h-16 sm:h-20 flex items-center justify-between gap-4">
         
-        {/* Left: Brand Logo (Click 5x for Developer Credit Easter Egg) */}
-        <Link href="/" onClick={handleLogoClick} className="flex items-center shrink-0 cursor-pointer select-none">
-          <img src="/brand/logo-primary.png" alt="Mr. Mango" className="h-9 sm:h-11 w-auto object-contain dark:hidden" />
-          <img src="/brand/logo-dark.png" alt="Mr. Mango" className="h-9 sm:h-11 w-auto object-contain hidden dark:block" />
-        </Link>
+        {/* Left: Brand Logo & Live Outlet Status */}
+        <div className="flex items-center gap-3 shrink-0">
+          <Link href="/" onClick={handleLogoClick} className="flex items-center cursor-pointer select-none">
+            <img src="/brand/logo-primary.png" alt="Mr. Mango" className="h-9 sm:h-11 w-auto object-contain dark:hidden" />
+            <img src="/brand/logo-dark.png" alt="Mr. Mango" className="h-9 sm:h-11 w-auto object-contain hidden dark:block" />
+          </Link>
+          <OutletStatusBadge />
+        </div>
 
         {/* Center: Desktop Navigation Bar with dropdowns */}
         <nav className="hidden xl:flex items-center gap-6">
@@ -348,6 +352,7 @@ export function Navbar() {
                     <img src="/brand/logo-dark.png" alt="Mr. Mango" className="h-9 object-contain hidden dark:block" />
                     <p className="text-[10px] font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider mt-1">Vape Shop BD</p>
                   </div>
+                  <OutletStatusBadge compact />
                 </div>
 
                 {/* Mobile Auth Button */}
